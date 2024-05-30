@@ -1,11 +1,11 @@
 import axios from "axios";
 
-// Axios Instance
-const api = axios.create({
+// @ Axios Instance
+export const api = axios.create({
   baseURL: "https://api.themoviedb.org/3",
   headers: {
-    "Authorization": `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`
+    Accept: 'application/json',
+    "Content-Type": "application/json; charset=utf-8",
+    "Authorization": `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
   }
 })
-
-export default api;
