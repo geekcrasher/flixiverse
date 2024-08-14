@@ -1,4 +1,4 @@
-export type Result = {
+export type MovieCollections = {
   id: number
   backdrop_path?: string
   original_language: string
@@ -13,7 +13,7 @@ export type Result = {
 
 export type MovieList = {
   page: number
-  results: Result[]
+  results: MovieCollections[]
   total_pages: number
   total_results: number
 }
