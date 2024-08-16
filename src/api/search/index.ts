@@ -1,13 +1,20 @@
-import { AxiosResponse } from "axios";
+import { AxiosResponse, AxiosError } from "axios";
 import { api } from "@/api/api";
 import { type MovieList } from "@/lib/types";
 
-export const searchMovie = async (movie: string): Promise<MovieList> => {
+export const fetchMovieSearchResults = async (movieTitle: string): Promise<MovieList> => {
   try {
-    const response: AxiosResponse<MovieList> = await api.get<MovieList>(`search/movie?query=${movie}`)
-    return response.data
+    // Split by spaces and join with '+'
+    const formattedQuery = movieTitle.split(' ').join('+');
+
+    const response: AxiosResponse<MovieList> = await api.get<MovieList>(`search/movie?query=${formattedQuery}`);
+    return response.data;
   } catch (error) {
-    console.error('Error fetching movie data:', error);
-    throw error
+    if (error instanceof AxiosError) {
+      console.error('Error fetching movie data:', error.message);
+    } else {
+      console.error('Unexpected error:', error);
+    }
+    throw error;
   }
 }
