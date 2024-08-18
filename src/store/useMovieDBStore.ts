@@ -1,15 +1,19 @@
-import { MovieCollections } from '@/lib/types';
+import { MovieCollections, MovieList } from '@/lib/types';
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 
-type State = {
+type State<T = unknown> = {
   searchMovieTitle: string
   selectedMovie: MovieCollections
+  movieCollections: MovieList
+  movieCollectionEntireDetails: T[]
 }
 
-type Action = {
+type Action<T = unknown> = {
   setSelectedMovie: (data: MovieCollections) => void
   setSearchTitle: (title: string) => void
+  setMovieCollections: (data: MovieList) => void
+  setMovieCollectionEntireDetails: (data: T[]) => void
 }
 
 export const useMovieDBStore = create<State & Action>()(
@@ -28,40 +32,22 @@ export const useMovieDBStore = create<State & Action>()(
           vote_average: 0,
           vote_count: 0
         },
+        movieCollections: {
+          page: 0,
+          results: [],
+          total_pages: 0,
+          total_results: 0
+        },
+        movieCollectionEntireDetails: [],
         setSearchTitle: (title) => set({ searchMovieTitle: title }),
-        setSelectedMovie: (data) => set({ selectedMovie: data })
+        setSelectedMovie: (data) => set({ selectedMovie: data }),
+        setMovieCollections: (data) => set({ movieCollections: data }),
+        setMovieCollectionEntireDetails: (data) => set({ movieCollectionEntireDetails: data })
       }),
       {
         name: 'movieDB-storage',
-        storage: createJSONStorage(() => sessionStorage)
+        storage: createJSONStorage(() => localStorage)
       }
     )
   )
 );
-
-
-
-// export const useMovieDBStore = create<State & Action>()((set) => ({
-//   searchMovieTitle: '',
-//   setSearchTitle: (title: string) => set({ searchMovieTitle: title }),
-// })
-// )
-
-
-// type counterStore = {
-//   count: number
-//   setCount: () => void
-// }
-
-// export const useCounterStore = create<counterStore>()(
-//   persist(
-//     (set, get) => ({
-//       count: 0,
-//       setCount: () => set({ count: get().count + 1 })
-//     }),
-//     {
-//       name: "counter-storage",
-//       storage: createJSONStorage(() => sessionStorage),
-//     }
-//   )
-// );
