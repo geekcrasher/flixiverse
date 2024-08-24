@@ -1,19 +1,30 @@
-import { MovieCollections, MovieList } from '@/lib/types';
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
+import {
+  type MovieCollections,
+  type MovieList,
+  type FilteredDetails,
+} from '@/lib/types';
+import {
+  initialSelectedMovie,
+  initialMovieCollections,
+  initialFilteredDetails
+} from './movieConstants';
 
-type State<T = unknown> = {
+type State = {
   searchMovieTitle: string
   selectedMovie: MovieCollections
   movieCollections: MovieList
-  movieCollectionEntireDetails: T[]
+  isMenuOpen: boolean
+  selectedMovieFilteredDetails: FilteredDetails
 }
 
-type Action<T = unknown> = {
-  setSelectedMovie: (data: MovieCollections) => void
+type Action = {
+  setSelectedMovie: (value: MovieCollections) => void
   setSearchTitle: (title: string) => void
-  setMovieCollections: (data: MovieList) => void
-  setMovieCollectionEntireDetails: (data: T[]) => void
+  setMovieCollections: (value: MovieList) => void
+  setIsMenuOpen: (value: boolean) => void
+  setSelectedMovieFilteredDetails: (value: FilteredDetails) => void
 }
 
 export const useMovieDBStore = create<State & Action>()(
@@ -21,28 +32,51 @@ export const useMovieDBStore = create<State & Action>()(
     persist(
       (set) => ({
         searchMovieTitle: '',
-        selectedMovie: {
-          id: 0,
-          original_language: '',
-          original_title: '',
-          overview: '',
-          popularity: 0,
-          poster_path: '',
-          release_date: '',
-          vote_average: 0,
-          vote_count: 0
-        },
-        movieCollections: {
-          page: 0,
-          results: [],
-          total_pages: 0,
-          total_results: 0
-        },
-        movieCollectionEntireDetails: [],
+        selectedMovie: initialSelectedMovie,
+        movieCollections: initialMovieCollections,
+        selectedMovieFilteredDetails: initialFilteredDetails,
+        isMenuOpen: false,
         setSearchTitle: (title) => set({ searchMovieTitle: title }),
-        setSelectedMovie: (data) => set({ selectedMovie: data }),
-        setMovieCollections: (data) => set({ movieCollections: data }),
-        setMovieCollectionEntireDetails: (data) => set({ movieCollectionEntireDetails: data })
+        setSelectedMovie: (value) => set({ selectedMovie: value }),
+        setMovieCollections: (value) => set({ movieCollections: value }),
+        setIsMenuOpen: (value) => set({ isMenuOpen: !value }),
+        setSelectedMovieFilteredDetails: (value) => {
+
+          const {
+            credits,
+            genres,
+            id,
+            original_title,
+            overview,
+            popularity,
+            poster_path,
+            release_date,
+            revenue,
+            reviews,
+            runtime,
+            videos,
+            vote_average,
+            vote_count } = value;
+
+          set({
+            selectedMovieFilteredDetails: {
+              credits,
+              genres,
+              id,
+              original_title,
+              overview,
+              popularity,
+              poster_path,
+              release_date,
+              revenue,
+              reviews,
+              runtime,
+              videos,
+              vote_average,
+              vote_count
+            }
+          })
+        }
       }),
       {
         name: 'movieDB-storage',
