@@ -43,6 +43,7 @@ export const useMovieDBStore = create<State & Action>()(
         setSelectedMovieFilteredDetails: (value) => {
 
           const {
+            backdrop_path,
             credits,
             genres,
             id,
@@ -60,6 +61,7 @@ export const useMovieDBStore = create<State & Action>()(
 
           set({
             selectedMovieFilteredDetails: {
+              backdrop_path,
               credits,
               genres,
               id,
