@@ -18,12 +18,14 @@ export const initialMovieCollections = {
 };
 
 export const initialFilteredDetails = {
+  backdrop_path: '',
   credits: {
     cast: [],
   },
-  genres: {
-    name: '',
-  },
+  genres: [{
+    id: null,
+    name: ''
+  }],
   id: null,
   original_title: '',
   overview: '',
