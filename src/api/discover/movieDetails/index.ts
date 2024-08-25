@@ -1,10 +1,10 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { api } from '@/api/api';
-import { type MovieList } from "@/lib/types";
+import { FilteredDetails } from "@/lib/types";
 
-export const fetchMovieDetails = async (movieID: number): Promise<MovieList> => {
+export const fetchFilteredMovieDetails = async (movieID: number = 0): Promise<FilteredDetails> => {
   try {
-    const response: AxiosResponse<MovieList> = await api.get<MovieList>(`/movie/${movieID}?append_to_response=videos`);
+    const response: AxiosResponse<FilteredDetails> = await api.get<FilteredDetails>(`/movie/${movieID}?append_to_response=videos,credits,reviews`);
     return response.data;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
