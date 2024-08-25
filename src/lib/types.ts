@@ -1,3 +1,5 @@
+import { LucideProps } from "lucide-react"
+
 export type MovieCollections = {
   id: number
   backdrop_path?: string
@@ -31,3 +33,63 @@ export type MovieDetails = {
   vote_average: number
   vote_count: number
 }
+
+export type Link = {
+  id: number
+  path: string
+  label: string
+  icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
+}
+
+export type FilteredDetails = {
+  backdrop_path: string
+  credits: { cast: Cast[] }
+  genres: {
+    id: number | null
+    name: string
+  }[]
+  id: number | null
+  original_title: string
+  overview: string
+  popularity: number
+  poster_path: string
+  release_date: string
+  revenue: number
+  reviews: ReviewResults[]
+  runtime: number
+  videos: {
+    results: VideoResults[]
+  }
+  vote_average: number
+  vote_count: number
+}
+
+/** related types for FilteredDetails */
+type Cast = {
+  id: number | null
+  character: string
+  credit_id: number
+  name: string
+  profile_path: string
+}
+
+type ReviewResults = {
+  author: string
+  author_details: {
+    avatar_path: string
+    rating: number
+    username: string
+  },
+  content: string
+  created_at: string
+  updated_at: string
+}
+
+type VideoResults = {
+  key: string
+  name: string
+  official: boolean
+  published_at: string
+  type: string
+}
+
