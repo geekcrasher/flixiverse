@@ -55,7 +55,9 @@ export type FilteredDetails = {
   poster_path: string
   release_date: string
   revenue: number
-  reviews: ReviewResults[]
+  reviews: {
+    results: ReviewResults[]
+  }
   runtime: number
   videos: {
     results: VideoResults[]
