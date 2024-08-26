@@ -33,7 +33,9 @@ export const initialFilteredDetails = {
   poster_path: '',
   release_date: '',
   revenue: 0,
-  reviews: [],
+  reviews: {
+    results: []
+  },
   runtime: 0,
   videos: {
     results: [],
