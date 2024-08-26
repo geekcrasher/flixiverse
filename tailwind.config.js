@@ -17,6 +17,12 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+      },
+      colors: {
+        turquoise: '#00CDD9'
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
