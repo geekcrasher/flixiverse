@@ -75,7 +75,7 @@ type Cast = {
   profile_path: string
 }
 
-type ReviewResults = {
+export type ReviewResults = {
   author: string
   author_details: {
     avatar_path: string
