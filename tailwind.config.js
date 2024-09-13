@@ -20,6 +20,9 @@ module.exports = {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
+      backgroundColor: {
+        infinity: '#222A33'
+      },
       colors: {
         turquoise: '#00CDD9'
       },
