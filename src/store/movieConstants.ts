@@ -31,6 +31,9 @@ export const initialFilteredDetails = {
   overview: '',
   popularity: 0,
   poster_path: '',
+  recommendations: {
+    results: []
+  },
   release_date: '',
   revenue: 0,
   reviews: {
