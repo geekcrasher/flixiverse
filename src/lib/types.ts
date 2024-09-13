@@ -53,6 +53,9 @@ export type FilteredDetails = {
   overview: string
   popularity: number
   poster_path: string
+  recommendations: {
+    results: MovieCollections[]
+  }
   release_date: string
   revenue: number
   reviews: {
