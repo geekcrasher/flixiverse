@@ -41,6 +41,10 @@ export type Link = {
   icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
 }
 
+export type Results<T> = {
+  results: T[]
+}
+
 export type FilteredDetails = {
   backdrop_path: string
   credits: { cast: Cast[] }
@@ -53,18 +57,12 @@ export type FilteredDetails = {
   overview: string
   popularity: number
   poster_path: string
-  recommendations: {
-    results: MovieCollections[]
-  }
+  recommendations: Results<unknown>
   release_date: string
   revenue: number
-  reviews: {
-    results: ReviewResults[]
-  }
+  reviews: Results<unknown>
   runtime: number
-  videos: {
-    results: VideoResults[]
-  }
+  videos: Results<unknown>
   vote_average: number
   vote_count: number
 }
