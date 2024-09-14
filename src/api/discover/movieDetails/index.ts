@@ -4,7 +4,7 @@ import { FilteredDetails } from "@/lib/types";
 
 export const fetchFilteredMovieDetails = async (movieID: number = 0): Promise<FilteredDetails> => {
   try {
-    const response: AxiosResponse<FilteredDetails> = await api.get<FilteredDetails>(`/movie/${movieID}?append_to_response=videos,credits,reviews`);
+    const response: AxiosResponse<FilteredDetails> = await api.get<FilteredDetails>(`/movie/${movieID}?append_to_response=videos,credits,reviews,recommendations`);
     return response.data;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
