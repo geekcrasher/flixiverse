@@ -57,12 +57,18 @@ export type FilteredDetails = {
   overview: string
   popularity: number
   poster_path: string
-  recommendations: Results<unknown>
+  recommendations: {
+    results: MovieCollections[]
+  }
   release_date: string
   revenue: number
-  reviews: Results<unknown>
+  reviews: {
+    results: ReviewResults[]
+  }
   runtime: number
-  videos: Results<unknown>
+  videos: {
+    results: VideoResults[]
+  }
   vote_average: number
   vote_count: number
 }
