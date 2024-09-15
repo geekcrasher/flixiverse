@@ -1,29 +1,23 @@
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 import {
-  type MovieCollections,
-  type MovieList,
   type FilteredDetails,
 } from '@/lib/types';
 import {
-  initialSelectedMovie,
-  initialMovieCollections,
   initialFilteredDetails
 } from './movieConstants';
 
 type State = {
-  searchMovieTitle: string
-  selectedMovie: MovieCollections
-  movieCollections: MovieList
-  isMenuOpen: boolean
+  // selectedMovie: MovieCollections
+  // movieCollections: MovieList
   selectedMovieFilteredDetails: FilteredDetails
+  searchMovieTitle: string
 }
 
 type Action = {
-  setSelectedMovie: (value: MovieCollections) => void
+  // setSelectedMovie: (value: MovieCollections) => void
+  // setMovieCollections: (value: MovieList) => void
   setSearchTitle: (title: string) => void
-  setMovieCollections: (value: MovieList) => void
-  setIsMenuOpen: (value: boolean) => void
   setSelectedMovieFilteredDetails: (value: FilteredDetails) => void
 }
 
@@ -31,15 +25,13 @@ export const useMovieDBStore = create<State & Action>()(
   devtools(
     persist(
       (set) => ({
+        // selectedMovie: initialSelectedMovie,
+        // movieCollections: initialMovieCollections,
+        // setSelectedMovie: (value) => set({ selectedMovie: value }),
+        // setMovieCollections: (value) => set({ movieCollections: value }),
         searchMovieTitle: '',
-        selectedMovie: initialSelectedMovie,
-        movieCollections: initialMovieCollections,
         selectedMovieFilteredDetails: initialFilteredDetails,
-        isMenuOpen: false,
         setSearchTitle: (title) => set({ searchMovieTitle: title }),
-        setSelectedMovie: (value) => set({ selectedMovie: value }),
-        setMovieCollections: (value) => set({ movieCollections: value }),
-        setIsMenuOpen: (value) => set({ isMenuOpen: !value }),
         setSelectedMovieFilteredDetails: (value) => {
 
           const {
@@ -51,6 +43,7 @@ export const useMovieDBStore = create<State & Action>()(
             overview,
             popularity,
             poster_path,
+            recommendations,
             release_date,
             revenue,
             reviews,
@@ -69,6 +62,7 @@ export const useMovieDBStore = create<State & Action>()(
               overview,
               popularity,
               poster_path,
+              recommendations,
               release_date,
               revenue,
               reviews,
