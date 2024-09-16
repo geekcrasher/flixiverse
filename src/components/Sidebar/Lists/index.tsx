@@ -1,6 +1,7 @@
 import { memo } from "react";
-import { Link } from "@/lib/types";
 import { NavLink } from "react-router-dom";
+import { Link } from "@/lib/types";
+import './style.css'
 
 type ListsProp = {
   category: string
