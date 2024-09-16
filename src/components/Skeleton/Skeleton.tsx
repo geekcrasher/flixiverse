@@ -1,7 +1,7 @@
 const Skeleton = () => {
   return (
     <>
-      <section className="animate-pulse w-[187.5px] h-[281.25px] bg-gray-200/50 rounded-lg">
+      <section className="animate-pulse w-[183px] h-[250px] bg-[#222a33]/70 rounded-lg">
       </section>
     </>
   );

@@ -2,7 +2,7 @@ import Skeleton from "./Skeleton";
 
 const SkeletonLoading = () => {
 
-  const movieSkelton = Array.from({ length: 20 }, (index: number) => {
+  const movieSkelton = Array.from({ length: 9 }, (index: number) => {
     return <Skeleton key={index} />
   });
 
