@@ -4,7 +4,6 @@ import { useHandleResize } from "@/hooks/useHandleResize";
 import { libraryLinks, menuLinks } from "./data";
 import Lists from "./Lists";
 import { Popcorn, X } from 'lucide-react';
-import './style.css'
 
 const Sidebar = () => {
 
