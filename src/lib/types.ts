@@ -53,7 +53,7 @@ export type FilteredDetails = {
     name: string
   }[]
   id: number | null
-  original_title: string
+  title: string
   overview: string
   popularity: number
   poster_path: string
@@ -76,19 +76,22 @@ export type FilteredDetails = {
 /** related types for FilteredDetails */
 type Cast = {
   id: number | null
+  original_name: string
   character: string
   credit_id: number
   name: string
   profile_path: string
 }
 
+export type AuthorDetails = {
+  avatar_path: string
+  rating: number
+  username: string
+}
+
 export type ReviewResults = {
   author: string
-  author_details: {
-    avatar_path: string
-    rating: number
-    username: string
-  },
+  author_details: AuthorDetails
   content: string
   created_at: string
   updated_at: string
