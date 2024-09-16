@@ -27,7 +27,7 @@ export const initialFilteredDetails = {
     name: ''
   }],
   id: null,
-  original_title: '',
+  title: '',
   overview: '',
   popularity: 0,
   poster_path: '',
