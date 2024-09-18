@@ -1,7 +1,7 @@
 export const initialSelectedMovie = {
   id: 0,
   original_language: '',
-  original_title: '',
+  title: '',
   overview: '',
   popularity: 0,
   poster_path: '',

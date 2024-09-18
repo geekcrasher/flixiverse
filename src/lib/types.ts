@@ -4,7 +4,7 @@ export type MovieCollections = {
   id: number
   backdrop_path?: string
   original_language: string
-  original_title: string
+  title: string
   overview: string
   popularity: number
   poster_path: string
@@ -52,7 +52,7 @@ export type FilteredDetails = {
     id: number | null
     name: string
   }[]
-  id: number | null
+  id: number
   title: string
   overview: string
   popularity: number
