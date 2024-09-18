@@ -4,7 +4,7 @@ import {
   House,
   ChartArea,
   CalendarDays,
-  Timer,
+  Heart,
   Star,
   BookmarkCheck
 } from 'lucide-react';
@@ -46,9 +46,9 @@ export const menuLinks: Link[] = [
 export const libraryLinks: Link[] = [
   {
     id: 1,
-    path: 'history',
-    label: 'History',
-    icon: Timer
+    path: 'wishlists',
+    label: 'Wishlists',
+    icon: Heart
   },
   {
     id: 2,
