@@ -52,7 +52,7 @@ export type FilteredDetails = {
     id: number | null
     name: string
   }[]
-  id: number
+  id: number | null
   title: string
   overview: string
   popularity: number
