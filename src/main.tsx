@@ -4,22 +4,30 @@ import App from './App.tsx'
 import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import { MovieDBContextProvider } from './context/MovieDBContext.tsx'
-import MovieDetails from './components/Movie/index.tsx';
-import SearchMovie from './pages/SearchMovie/index.tsx';
 import About from './pages/About/index.tsx';
+import Discover from './pages/Discover/index.tsx';
+import SearchMovie from './pages/SearchMovie/index.tsx';
+import MovieSummary from './pages/MovieSummary/index.tsx';
+import Wishlist from './pages/Wishlist/index.tsx';
+import Bookmark from './pages/Bookmark/index.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
       <Route
         index
-        element={<MovieDetails />}
+        path='home'
+        element={<Discover />}
       />
-      <Route path="search/results" element={<SearchMovie />} />
-      <Route path="search" element={<div>this is the search results</div>} />
-      <Route path="about" element={<About />} />
+      <Route path="search" element={<SearchMovie />} />
+      <Route path="watch/:movieID" element={<MovieSummary />} />
+      <Route path="trending" element={<div> This is the trending Page</div>} />
+      <Route path="popular" element={<div> This is the popular Page</div>} />
       <Route path="movies" element={<div> This is the Movies Page</div>} />
       <Route path="tv-shows" element={<div> This is the TV Shows Page</div>} />
+      <Route path="about" element={<About />} />
+      <Route path="wishlists" element={<Wishlist />} />
+      <Route path="bookmarked" element={<Bookmark />} />
       <Route path="*" element={<div>Page not found</div>} />
     </Route>
   )
