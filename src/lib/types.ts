@@ -41,33 +41,29 @@ export type Link = {
   icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
 }
 
-export type Results<T> = {
-  results: T[]
-}
-
 export type FilteredDetails = {
   backdrop_path: string
-  credits: { cast: Cast[] }
-  genres: {
-    id: number | null
-    name: string
-  }[]
+  credits: {
+    cast: ReadonlyArray<Cast>
+  }
+  genres: ReadonlyArray<Genre>
+  homepage?: ''
   id: number | null
   title: string
   overview: string
   popularity: number
   poster_path: string
   recommendations: {
-    results: MovieCollections[]
+    results: ReadonlyArray<MovieCollections>
   }
   release_date: string
   revenue: number
   reviews: {
-    results: ReviewResults[]
+    results: ReadonlyArray<ReviewResult>
   }
   runtime: number
   videos: {
-    results: VideoResults[]
+    results: ReadonlyArray<VideoResult>
   }
   vote_average: number
   vote_count: number
@@ -83,21 +79,26 @@ type Cast = {
   profile_path: string
 }
 
-export type AuthorDetails = {
+type Genre = {
+  id: number | null
+  name: string
+}
+
+export type AuthorDetail = {
   avatar_path: string
   rating: number
   username: string
 }
 
-export type ReviewResults = {
+export type ReviewResult = {
   author: string
-  author_details: AuthorDetails
+  author_details: AuthorDetail
   content: string
   created_at: string
   updated_at: string
 }
 
-type VideoResults = {
+type VideoResult = {
   key: string
   name: string
   official: boolean
