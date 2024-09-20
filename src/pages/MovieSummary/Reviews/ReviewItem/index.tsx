@@ -1,5 +1,5 @@
-import React from "react";
-import { type ReviewResults } from "@/lib/types";
+import { memo } from "react";
+import { type ReviewResult } from "@/lib/types";
 import {
   Dialog,
   DialogContent,
@@ -9,10 +9,10 @@ import {
 import ReviewHeader from "./ReviewHeader";
 
 type ReviewItemProp = {
-  authorInfo: ReviewResults
+  authorInfo: ReviewResult
 }
 
-const ReviewItem = React.memo(({ authorInfo }: ReviewItemProp) => {
+const ReviewItem = memo(({ authorInfo }: ReviewItemProp) => {
 
   const {
     author,

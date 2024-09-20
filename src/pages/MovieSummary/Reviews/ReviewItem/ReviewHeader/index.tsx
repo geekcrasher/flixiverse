@@ -1,19 +1,14 @@
+import { type ReviewResult } from "@/lib/types";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
+import DateFormatter from "@/pages/MovieSummary/Reviews/DateFormatter";
 import { UserRound, Star } from "lucide-react";
-import DateFormatter from "../../DateFormatter";
-import { AuthorDetails } from "@/lib/types";
 
-type ReviewHeaderProp = {
-  author: string
-  author_details: AuthorDetails
-  created_at: string
-  updated_at: string
-}
+type ReviewHeaderProp = Omit<ReviewResult, 'content'>
 
 const ReviewHeader = ({
   author,

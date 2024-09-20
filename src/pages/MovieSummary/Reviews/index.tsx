@@ -1,5 +1,5 @@
 import { useState, useMemo, memo } from "react";
-import { ReviewResults } from "@/lib/types";
+import { type ReviewResult } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import ReviewItem from "./ReviewItem";
 import DataFallback from "@/components/DataFallback";
@@ -7,7 +7,7 @@ import Heading from "@/components/Heading";
 
 type ReviewProp = {
   reviews: {
-    results: ReviewResults[]
+    results: ReadonlyArray<ReviewResult>
   }
 }
 
