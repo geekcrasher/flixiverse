@@ -1,19 +1,16 @@
 import { useState, useMemo, memo } from "react";
-import { type ReviewResult } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import ReviewItem from "./ReviewItem";
 import DataFallback from "@/components/DataFallback";
 import Heading from "@/components/Heading";
+import { useMovieFilteredDetails } from "@/hooks/useMovieFilteredDetails";
 
-type ReviewProp = {
-  reviews: {
-    results: ReadonlyArray<ReviewResult>
-  }
-}
 
-const Reviews = memo(({ reviews }: ReviewProp) => {
+const Reviews = memo(() => {
 
   const [visibleReviewsCount, setVisibleReviewsCount] = useState(3);
+  const { movieFilteredDetails } = useMovieFilteredDetails()
+  const { reviews } = movieFilteredDetails
 
   const showMoreReviews = () => {
     setVisibleReviewsCount(prevCount => prevCount + 3);

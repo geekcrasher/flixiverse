@@ -1,4 +1,3 @@
-import { type MovieCollections } from "@/lib/types";
 import {
   Carousel,
   CarouselContent,
@@ -7,14 +6,12 @@ import {
 import MovieCards from "./MovieCards";
 import Heading from "@/components/Heading";
 import DataFallback from "@/components/DataFallback";
+import { useMovieFilteredDetails } from "@/hooks/useMovieFilteredDetails";
 
-type RecommendationProp = {
-  recommendations: {
-    results: MovieCollections[]
-  }
-}
+const Recommendation = () => {
 
-const Recommendation = ({ recommendations }: RecommendationProp) => {
+  const { movieFilteredDetails } = useMovieFilteredDetails()
+  const { recommendations } = movieFilteredDetails
 
   if (recommendations.results?.length === 0) {
     return <DataFallback title="Similar Movies" message="No similar movies available" />

@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { type FilteredDetails } from "@/lib/types";
+import { useMovieFilteredDetails } from "@/hooks/useMovieFilteredDetails";
 import {
   Carousel,
   CarouselContent,
@@ -10,9 +10,10 @@ import DataFallback from "@/components/DataFallback";
 import Heading from "@/components/Heading";
 import { UserRound } from "lucide-react";
 
-type CastProp = Pick<FilteredDetails, 'credits'>
+const Cast = memo(() => {
 
-const Cast = memo(({ credits }: CastProp) => {
+  const { movieFilteredDetails } = useMovieFilteredDetails()
+  const { credits } = movieFilteredDetails
 
   if (credits.cast.length === 0) {
     return <DataFallback title="Top Cast" message="No cast available" />
