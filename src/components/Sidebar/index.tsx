@@ -20,7 +20,7 @@ const Sidebar = () => {
     <>
       <aside className="drawer-side relative z-50">
         <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-        <nav className="fixed left-0 w-72 lg:w-20 h-screen bg-infinity">
+        <nav className="fixed left-0 w-72 lg:w-20 h-screen bg-[#283440]/80">
           <section className="pl-7 h-20 flex items-center justify-between">
             <Link to='home' className="flex items-center space-x-4 font-bold text-turquoise text-2xl">
               <Popcorn className="w-5 h-5 text-turquoise" />
