@@ -3,7 +3,7 @@ import Drawer from "./components/Drawer"
 
 function App() {
   return (
-    <main className="min-h-screen w-full bg-neutral">
+    <main className="min-h-screen w-full bg-infinity">
       <Drawer>
         <Outlet />
       </Drawer>
