@@ -4,6 +4,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import DataFallback from "@/components/DataFallback";
@@ -39,7 +41,7 @@ const Cast = memo(() => {
 
                     return (
                       <CarouselItem key={cast.id} className="pl-1 basis-auto mr-4">
-                        <section className="flex items-center space-x-4 bg-gray-700 p-4 rounded-md">
+                        <section className="flex items-center space-x-4 bg-petrol p-4 rounded-md">
                           <Avatar className="size-12 sm:size-14 rounded-full overflow-hidden cursor-pointer opacity-90">
                             <AvatarImage
                               src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
@@ -59,6 +61,8 @@ const Cast = memo(() => {
                   })
                 }
               </CarouselContent>
+              <CarouselNext className="bg-gray-600 -right-3" />
+              <CarouselPrevious className="bg-gray-600 -left-3" />
             </Carousel>
           </figure >
         )
