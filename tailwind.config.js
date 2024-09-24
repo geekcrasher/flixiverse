@@ -21,7 +21,8 @@ module.exports = {
         poppins: ["Poppins", "sans-serif"],
       },
       backgroundColor: {
-        infinity: '#222A33'
+        infinity: '#222A33',
+        petrol: '#253441'
       },
       colors: {
         turquoise: '#00CDD9'
