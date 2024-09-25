@@ -1,6 +1,6 @@
-import { type FilteredDetails } from "@/lib/types";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { type FilteredDetails } from "@/lib/types";
 
 type State = {
   movieAddedToWishlist: FilteredDetails[]
@@ -10,8 +10,8 @@ type State = {
 type Action = {
   setAddMovieToWishlist: (value: FilteredDetails) => void
   setAddMovieToBookmark: (value: FilteredDetails) => void
-  removeToWishlist: (id: number | null) => void;
-  removeToBookmark: (id: number | null) => void;
+  removeToWishlist: (id: number) => void;
+  removeToBookmark: (id: number) => void;
 }
 
 export const useMovieStore = create<State & Action>()(
@@ -28,10 +28,10 @@ export const useMovieStore = create<State & Action>()(
       })),
 
 
-      removeToWishlist: (id: number | null) => set((state) => ({
+      removeToWishlist: (id) => set((state) => ({
         movieAddedToWishlist: state.movieAddedToWishlist.filter(movie => movie.id !== id)
       })),
-      removeToBookmark: (id: number | null) => set((state) => ({
+      removeToBookmark: (id) => set((state) => ({
         movieAddedToBookmark: state.movieAddedToBookmark.filter(movie => movie.id !== id)
       })),
     }),
