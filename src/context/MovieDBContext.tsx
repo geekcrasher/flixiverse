@@ -3,7 +3,6 @@ import React, {
   useState,
   useEffect,
 } from 'react'
-import { useMovieFilteredDetails } from '@/hooks/useMovieFilteredDetails';
 import { fetchDiscoveredMovies } from "@/api/discover";
 import { type MovieList } from "@/lib/types";
 
@@ -20,8 +19,6 @@ export const MovieDBContextProvider = ({ children }: { children: React.ReactNode
 
   const [movieList, setMovieList] = useState<MovieList | null>(null)
   const [selectedMovieID, setSelectedMovieID] = useState<number | null>(null)
-
-  useMovieFilteredDetails(selectedMovieID)
 
   /** Function to get the movies when the page renders */
   const fetchMovies = async () => {
