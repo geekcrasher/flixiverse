@@ -21,7 +21,7 @@ const MovieActions = ({ debouncedWishlistClick, isMovieAddedToWishlist, classNam
   const { movieFilteredDetails } = useMovieFilteredDetails()
   const { videos } = movieFilteredDetails
 
-  const filteredVideo = videos.results.find((video) => video.name.startsWith("Official Trailer"))
+  const filteredVideo = videos.results.find((video) => video.name.startsWith("Official Trailer") && video.type === 'Trailer')
 
   return (
     <section className={cn("flex items-center gap-6 xl:mt-12", className)}>
