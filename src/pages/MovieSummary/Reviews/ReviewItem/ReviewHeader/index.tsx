@@ -5,7 +5,7 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
-import DateFormatter from "@/pages/MovieSummary/Reviews/DateFormatter";
+import DateFormatter from "@/pages/MovieSummary/DateFormatter";
 import { UserRound, Star } from "lucide-react";
 
 type ReviewHeaderProp = Omit<Review, 'content'>
