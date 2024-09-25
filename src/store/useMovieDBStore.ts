@@ -1,66 +1,24 @@
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
-import { type FilteredDetails } from '@/lib/types';
-import { initialFilteredDetails } from './movieConstants';
 
 type State = {
-  selectedMovieFilteredDetails: FilteredDetails
+  selectedMovieID: number | null
   searchMovieTitle: string
 }
 
 type Action = {
+  setSelectedMovieID: (id: number) => void
   setSearchTitle: (title: string) => void
-  setSelectedMovieFilteredDetails: (value: FilteredDetails) => void
 }
 
 export const useMovieDBStore = create<State & Action>()(
   devtools(
     persist(
       (set) => ({
+        selectedMovieID: null,
         searchMovieTitle: '',
-        selectedMovieFilteredDetails: initialFilteredDetails,
+        setSelectedMovieID: (id) => set({ selectedMovieID: id }),
         setSearchTitle: (title) => set({ searchMovieTitle: title }),
-        setSelectedMovieFilteredDetails: (value) => {
-
-          const {
-            backdrop_path,
-            credits,
-            genres,
-            id,
-            title,
-            overview,
-            popularity,
-            poster_path,
-            recommendations,
-            release_date,
-            revenue,
-            reviews,
-            runtime,
-            videos,
-            vote_average,
-            vote_count } = value;
-
-          set({
-            selectedMovieFilteredDetails: {
-              backdrop_path,
-              credits,
-              genres,
-              id,
-              title,
-              overview,
-              popularity,
-              poster_path,
-              recommendations,
-              release_date,
-              revenue,
-              reviews,
-              runtime,
-              videos,
-              vote_average,
-              vote_count
-            }
-          })
-        }
       }),
       {
         name: 'movieDB-storage',
