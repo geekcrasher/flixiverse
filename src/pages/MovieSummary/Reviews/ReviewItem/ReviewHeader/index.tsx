@@ -1,4 +1,4 @@
-import { type ReviewResult } from "@/lib/types";
+import { type Review } from "@/lib/types";
 import {
   Avatar,
   AvatarFallback,
@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import DateFormatter from "@/pages/MovieSummary/Reviews/DateFormatter";
 import { UserRound, Star } from "lucide-react";
 
-type ReviewHeaderProp = Omit<ReviewResult, 'content'>
+type ReviewHeaderProp = Omit<Review, 'content'>
 
 const ReviewHeader = ({
   author,
@@ -26,9 +26,12 @@ const ReviewHeader = ({
               <UserRound className="size-5 text-gray-400" />
             </AvatarFallback>
           </Avatar>
-          <section className="space-y-1">
+          <section className="space-y-1 text-start">
             <p className="text-turquoise font-medium text-sm">{author}</p>
-            <DateFormatter isoDate={`${updated_at ?? created_at}`} />
+            <DateFormatter
+              isoDate={`${updated_at ?? created_at}`}
+              className="text-gray-300 text-[0.8rem]"
+            />
           </section>
         </section>
         <Badge className="bg-gray-700 space-x-1">

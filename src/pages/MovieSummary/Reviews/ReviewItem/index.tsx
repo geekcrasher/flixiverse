@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { type ReviewResult } from "@/lib/types";
+import { type Review } from "@/lib/types";
 import {
   Dialog,
   DialogContent,
@@ -9,7 +9,7 @@ import {
 import ReviewHeader from "./ReviewHeader";
 
 type ReviewItemProp = {
-  authorInfo: ReviewResult
+  authorInfo: Review
 }
 
 const ReviewItem = memo(({ authorInfo }: ReviewItemProp) => {
@@ -24,7 +24,7 @@ const ReviewItem = memo(({ authorInfo }: ReviewItemProp) => {
 
   return (
     <>
-      <article className="space-y-6 bg-gray-700 p-3 rounded-lg">
+      <article className="space-y-6 bg-petrol p-3 rounded-lg">
         <ReviewHeader
           author={author}
           author_details={author_details}
