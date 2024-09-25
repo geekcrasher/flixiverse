@@ -4,11 +4,11 @@ export type MovieCollections = {
   id: number
   backdrop_path?: string
   original_language: string
-  title: string
   overview: string
   popularity: number
   poster_path: string
   release_date: string
+  title: string
   vote_average: number
   vote_count: number
 }
@@ -19,7 +19,6 @@ export type MovieList = {
   total_pages: number
   total_results: number
 }
-
 
 export type MovieDetails = {
   budget: number
@@ -36,34 +35,39 @@ export type MovieDetails = {
 
 export type Link = {
   id: number
-  path: string
-  label: string
   icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
+  label: string
+  path: string
 }
 
 export type FilteredDetails = {
+  id: number | null
   backdrop_path: string
   credits: {
     cast: ReadonlyArray<Cast>
   }
   genres: ReadonlyArray<Genre>
-  homepage?: ''
-  id: number | null
-  title: string
+  homepage?: string
   overview: string
   popularity: number
   poster_path: string
+  production_companies: ReadonlyArray<ProductionCompany>
+  production_countries: ReadonlyArray<ProductionCountry>
   recommendations: {
     results: ReadonlyArray<MovieCollections>
   }
   release_date: string
   revenue: number
   reviews: {
-    results: ReadonlyArray<ReviewResult>
+    results: ReadonlyArray<Review>
   }
   runtime: number
+  spoken_languages: ReadonlyArray<Language>
+  status: string
+  tagline: string
+  title: string
   videos: {
-    results: ReadonlyArray<VideoResult>
+    results: ReadonlyArray<Video>
   }
   vote_average: number
   vote_count: number
@@ -72,10 +76,10 @@ export type FilteredDetails = {
 /** related types for FilteredDetails */
 type Cast = {
   id: number | null
-  original_name: string
   character: string
   credit_id: number
   name: string
+  original_name: string
   profile_path: string
 }
 
@@ -90,7 +94,7 @@ export type AuthorDetail = {
   username: string
 }
 
-export type ReviewResult = {
+export type Review = {
   author: string
   author_details: AuthorDetail
   content: string
@@ -98,7 +102,7 @@ export type ReviewResult = {
   updated_at: string
 }
 
-type VideoResult = {
+type Video = {
   key: string
   name: string
   official: boolean
@@ -106,3 +110,17 @@ type VideoResult = {
   type: string
 }
 
+type ProductionCompany = {
+  id: number
+  name: string
+}
+
+type ProductionCountry = {
+  iso_3166_1: string
+  name: string
+}
+
+type Language = {
+  iso_639_1: string
+  english_name: string
+}
