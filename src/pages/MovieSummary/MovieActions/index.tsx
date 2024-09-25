@@ -56,11 +56,11 @@ const MovieActions = ({ debouncedWishlistClick, isMovieAddedToWishlist, classNam
 
       <Button
         onClick={debouncedWishlistClick}
-        className={`w-full h-14 bg-gray-700 hover:bg-gray-700/70 ${isMovieAddedToWishlist ? 'text-turquoise' : 'text-gray-400'}`}
+        className={`w-full h-14 bg-petrol hover:bg-petrol/80 ${isMovieAddedToWishlist ? 'text-turquoise' : 'text-gray-400'}`}
       >
         <Heart
           className={`size-6 mr-2 ${isMovieAddedToWishlist ? 'text-turquoise' : 'text-gray-400'}`}
-          fill={isMovieAddedToWishlist ? "#00cdd9" : "#374151"}
+          fill={isMovieAddedToWishlist ? "#00cdd9" : "#293441"}
         />
         {isMovieAddedToWishlist ? 'Added to Watchlist' : 'Add to Watchlist'}
       </Button>
