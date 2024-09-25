@@ -10,7 +10,7 @@ import { Bell, Menu } from "lucide-react";
 const Header = () => {
   return (
     <header className="sticky top-0 z-10">
-      <section className=" flex items-center gap-8 bg-neutral h-20 px-4 lg:px-8">
+      <section className=" flex items-center gap-8 bg-infinity h-20 px-4 lg:px-8">
         <section className="flex items-center gap-4">
           <label htmlFor="my-drawer-2" className="drawer-button cursor-pointer lg:hidden">
             <Menu className="w-5 h-5 text-gray-500/90" />
