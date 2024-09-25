@@ -34,7 +34,7 @@ const Reviews = memo(() => {
     <>
       {
         reviews.results.length > 0 && (
-          <section className="mt-10 space-y-6">
+          <section className="mt-12 space-y-6">
             <Heading title="Reviews" />
             <section className="space-y-4 sm:space-y-0 sm:grid grid-cols-2 lg:grid-cols-3 gap-4">
               {visibleReviews.map((reviewer) => (

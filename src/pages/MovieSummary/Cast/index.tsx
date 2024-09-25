@@ -25,7 +25,7 @@ const Cast = memo(() => {
     <>
       {
         credits.cast.length > 0 && (
-          <figure className="flex flex-col space-y-8 mt-10">
+          <figure className="flex flex-col space-y-8 mt-12">
             <Heading title="Top Cast" />
             <Carousel
               opts={{

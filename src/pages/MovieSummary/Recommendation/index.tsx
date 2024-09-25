@@ -21,7 +21,7 @@ const Recommendation = () => {
     <>
       {
         recommendations.results.length > 0 && (
-          <section className="mt-10 space-y-6">
+          <section className="mt-12 space-y-6">
             <Heading title="Similar Movies" />
             <Carousel
               opts={{
