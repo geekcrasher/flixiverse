@@ -1,4 +1,4 @@
-import { FilteredDetails } from "@/lib/types";
+import { FilteredDetails, MovieList } from "@/lib/types";
 
 // export const initialFilteredDetails: FilteredDetails = {
 //   backdrop_path: '',
@@ -72,4 +72,11 @@ export const initialFilteredDetails: FilteredDetails = {
     results: [],
   },
 };
+
+export const initialMovieListDetails: MovieList = {
+  page: 0,
+  results: [],
+  total_pages: 0,
+  total_results: 0
+}
 
