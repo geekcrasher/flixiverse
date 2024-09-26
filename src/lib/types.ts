@@ -20,19 +20,6 @@ export type MovieList = {
   total_results: number
 }
 
-export type MovieDetails = {
-  budget: number
-  genres: { name: string }[]
-  original_title: string
-  overview: string
-  popularity: number
-  release_date: string
-  revenue: number
-  runtime: number
-  vote_average: number
-  vote_count: number
-}
-
 export type Link = {
   id: number
   icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
