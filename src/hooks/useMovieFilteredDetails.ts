@@ -30,7 +30,12 @@ export const useMovieFilteredDetails = () => {
         console.error('Invalid data structure received from API:', data);
       }
     } catch (error) {
-      console.error('Error fetching selected movie details:', error);
+      if (error instanceof Error) {
+        console.error('Error fetching selected movie details:', error);
+      } else {
+        console.error('Unexpected error occurred:', error);
+      }
+      setMovieFilteredDetails(initialFilteredDetails)
     }
   }, [movieID]);
 
