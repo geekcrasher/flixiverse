@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { fetchDiscoveredMovies } from "@/api/discover"
 import { type MovieList } from "@/lib/types"
-import { isMovieList } from "@/lib/typeGuards/isMovieList"
+import { isMovieList } from "@/lib/typeGuards/guards"
 
 export const useDiscoverMovies = () => {
 
