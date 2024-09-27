@@ -17,7 +17,7 @@ const Wishlist = () => {
 
   return (
     <>
-      <section className="flex items-center gap-4 p-14">
+      <section className="flex flex-wrap items-center gap-4 p-14 border">
         {
           movieAddedToWishlist.length > 0 &&
           movieAddedToWishlist.map((movie) => (
