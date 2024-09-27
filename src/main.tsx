@@ -10,6 +10,8 @@ import SearchMovie from './pages/SearchMovie/index.tsx';
 import MovieSummary from './pages/MovieSummary/index.tsx';
 import Wishlist from './pages/Wishlist/index.tsx';
 import Bookmark from './pages/Bookmark/index.tsx';
+import Trending from './pages/Trending/index.tsx';
+import TVShowSummary from './pages/TVShowSummary/index.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,8 +22,9 @@ const router = createBrowserRouter(
         element={<Discover />}
       />
       <Route path="search" element={<SearchMovie />} />
-      <Route path="watch/:movieID" element={<MovieSummary />} />
-      <Route path="trending" element={<div> This is the trending Page</div>} />
+      <Route path="movie/watch/:movieID" element={<MovieSummary />} />
+      <Route path="tv/watch/:tvID" element={<TVShowSummary />} />
+      <Route path="trending" element={<Trending />} />
       <Route path="popular" element={<div> This is the popular Page</div>} />
       <Route path="movies" element={<div> This is the Movies Page</div>} />
       <Route path="tv-shows" element={<div> This is the TV Shows Page</div>} />
