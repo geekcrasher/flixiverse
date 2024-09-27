@@ -1,20 +1,18 @@
 import { useCallback, useEffect, useState } from "react";
-import { fetchFilteredMovieDetails } from "@/api/discover/movieDetails";
-import { FilteredDetails } from "@/lib/types";
 import { useParams } from "react-router-dom";
-import { initialFilteredDetails } from "@/constants/movieConstants";
+import { fetchFilteredMovieDetails } from "@/api/discover/movieDetails";
+import { type MovieFilteredDetails } from "@/lib/types";
+import { initialFilteredMovieDetails } from "@/constants/movieConstants";
+import { isValidID } from "@/lib/typeGuards/guards";
 
-// Custom hook for movie details with type guards
+
+// Custom hook for handling movie details
 export const useMovieFilteredDetails = () => {
-  const [movieFilteredDetails, setMovieFilteredDetails] = useState<FilteredDetails>({ ...initialFilteredDetails });
+  const [movieFilteredDetails, setMovieFilteredDetails] = useState<MovieFilteredDetails>({ ...initialFilteredMovieDetails });
   const { movieID } = useParams();
 
-  const isValidMovieID = (id: string | undefined): id is string => {
-    return id !== undefined && !isNaN(Number(id));
-  };
-
   const fetchSelectedMovieDetails = useCallback(async () => {
-    if (!isValidMovieID(movieID)) {
+    if (!isValidID(movieID)) {
       console.warn('Invalid movie ID:', movieID);
       return;
     }
@@ -35,7 +33,7 @@ export const useMovieFilteredDetails = () => {
       } else {
         console.error('Unexpected error occurred:', error);
       }
-      setMovieFilteredDetails(initialFilteredDetails)
+      setMovieFilteredDetails(initialFilteredMovieDetails)
     }
   }, [movieID]);
 
