@@ -20,7 +20,7 @@ const MovieCards = ({ movie }: MovieCardsProp) => {
     <Card
       className="border-0 cursor-pointer overflow-hidden bg-transparent"
       onClick={() => {
-        navigate(`/watch/${id}?title=${title.toLocaleLowerCase()}`)
+        navigate(`/movie/watch/${id}?title=${title.toLocaleLowerCase()}`)
         setSelectedMovieID(id)
       }}
     >
