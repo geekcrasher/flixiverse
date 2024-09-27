@@ -1,17 +1,17 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { api } from "@/api/api";
-import { type MovieList } from "@/lib/types";
-import { isMovieList } from "@/lib/typeGuards/isMovieList";
+import { type TrendingList } from "@/lib/types";
+import { isTrendingList } from "@/lib/typeGuards/guards";
 
 export const fetchTrendingList = async (
   category: string = 'all',
   time_window: string = 'day',
   page: number = 1
-): Promise<MovieList> => {
+): Promise<TrendingList> => {
   try {
-    const response: AxiosResponse<MovieList> = await api.get<MovieList>(`/trending/${category}/${time_window}?page=${page}`)
+    const response: AxiosResponse<TrendingList> = await api.get<TrendingList>(`/trending/${category}/${time_window}?page=${page}`)
 
-    if (isMovieList(response.data)) {
+    if (isTrendingList(response.data)) {
       return response.data
     }
 
