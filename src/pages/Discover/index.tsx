@@ -76,7 +76,7 @@ const Discover = () => {
                     <Card
                       className=" border-0 cursor-pointer overflow-hidden"
                       onClick={() => {
-                        navigate(`/watch/${movie.id}?title=${movie.title.toLocaleLowerCase()}`)
+                        navigate(`/movie/watch/${movie.id}?title=${encodeURIComponent(movie.title.toLocaleLowerCase())}`)
                         setSelectedMovieID(movie.id)
                       }}
                     >
@@ -124,7 +124,7 @@ const Discover = () => {
                     <Card
                       className=" border-0 cursor-pointer overflow-hidden"
                       onClick={() => {
-                        navigate(`/watch/${movie.id}?title=${movie.title.toLocaleLowerCase()}`)
+                        navigate(`/movie/watch/${movie.id}?title=${encodeURIComponent(movie.title.toLocaleLowerCase())}`)
                         setSelectedMovieID(movie.id)
                       }}
                     >
