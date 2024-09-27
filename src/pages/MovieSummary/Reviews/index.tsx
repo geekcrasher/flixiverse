@@ -1,9 +1,9 @@
 import { useState, useMemo, memo } from "react";
-import { Button } from "@/components/ui/button";
-import ReviewItem from "./ReviewItem";
+import { useMovieFilteredDetails } from "@/hooks/useMovieFilteredDetails";
+import ReviewItem from "@/components/ReviewItem";
 import DataFallback from "@/components/DataFallback";
 import Heading from "@/components/Heading";
-import { useMovieFilteredDetails } from "@/hooks/useMovieFilteredDetails";
+import ShowMore from "@/components/Button/ShowMore";
 
 
 const Reviews = memo(() => {
@@ -45,14 +45,9 @@ const Reviews = memo(() => {
               ))}
             </section>
 
-            {visibleReviewsCount < reviews.results.length && (
-              <Button
-                onClick={showMoreReviews}
-                className="flex mt-6 p-2 bg-gray-700 hover:bg-gray-700/70 text-gray-300 hover:text-turquoise text-xs rounded-lg mx-auto"
-              >
-                Show More
-              </Button>
-            )}
+            {visibleReviewsCount < reviews.results.length &&
+              <ShowMore showMoreReviews={showMoreReviews} />
+            }
           </section>
         )
       }
