@@ -1,5 +1,15 @@
 import { LucideProps } from "lucide-react"
 
+/**
+ * Useful type helper by Matt Pocock
+ * 
+ * Prettify<?>
+ */
+type Prettify<T> = {
+  [K in keyof T]: T[K]
+} & unknown;
+
+
 export type MovieCollections = {
   id: number
   backdrop_path?: string
@@ -28,35 +38,11 @@ export type Link = {
   path: string
 }
 
-export type MovieFilteredDetails = {
-  id: number | null
-  backdrop_path: string
-  credits: {
-    cast: ReadonlyArray<Cast>
-  }
-  genres: ReadonlyArray<Genre>
-  homepage?: string
-  overview: string
-  popularity: number
-  poster_path: string
-  production_companies: ReadonlyArray<ProductionCompany>
-  production_countries: ReadonlyArray<ProductionCountry>
-  recommendations: RecommendationResult
-  release_date: string
-  revenue: number
-  reviews: ReviewResult
-  runtime: number
-  spoken_languages: ReadonlyArray<Language>
-  status: string
-  tagline: string
-  title: string
-  videos: VideoResult
-  vote_average: number
-  vote_count: number
+export type Credit = {
+  cast: ReadonlyArray<Cast>
 }
 
-/** related types for FilteredDetails */
-type Cast = {
+export type Cast = {
   id: number | null
   character: string
   credit_id: number
@@ -92,23 +78,57 @@ export type Video = {
   type: string
 }
 
-type ProductionCompany = {
+export type ProductionCompany = {
   id: number
   name: string
 }
 
-type ProductionCountry = {
+export type ProductionCountry = {
   iso_3166_1: string
   name: string
 }
 
-type Language = {
+export type Language = {
   iso_639_1: string
   english_name: string
 }
 
-export type RecommendationResult = {
-  results: ReadonlyArray<MovieCollections>
+type MediaType = "tv" | "movie"
+
+type RecommendationBase = {
+  backdrop_path: string
+  id: number
+  overview: string
+  poster_path: string
+  media_type: MediaType
+  adult: boolean
+  original_language: string
+  genre_ids: number[]
+  popularity: number
+  vote_average: number
+  vote_count: number
+}
+
+type MovieRecommendation = Prettify<RecommendationBase & {
+  title: string
+  original_title: string
+  release_date: string
+  video: boolean
+}>
+
+type TVRecommendation = Prettify<RecommendationBase & {
+  name: string
+  original_name: string
+  first_air_date: string
+  origin_country: string[]
+}>
+
+export type MovieRecommendationResult = {
+  results: ReadonlyArray<MovieRecommendation>
+}
+
+export type TVRecommendationResult = {
+  results: ReadonlyArray<TVRecommendation>
 }
 
 export type ReviewResult = {
@@ -118,15 +138,12 @@ export type VideoResult = {
   results: ReadonlyArray<Video>
 }
 
-
-type Media = 'movie' | 'tv'
-
 type TrendingBase = {
   backdrop_path: string
   id: number
   overview: string
   poster_path: string
-  media_type: Media
+  media_type: MediaType
   adult: boolean
   original_language: string
   genre_ids: number[]
@@ -134,15 +151,6 @@ type TrendingBase = {
   vote_average: number
   vote_count: number
 }
-
-/**
- * Useful type helper by Matt Pocock
- * 
- * Prettify<?>
- */
-type Prettify<T> = {
-  [K in keyof T]: T[K]
-} & unknown;
 
 export type TrendingTVCollection = Prettify<
   TrendingBase & {
@@ -213,41 +221,74 @@ export type LastEpisodeToAir = Episode
 
 export type NextEpisodeToAir = Episode
 
-// Define the main type for the series
-export type TVShowFilteredDetails = {
-  adult: boolean;
-  backdrop_path: string;
-  created_by: ReadonlyArray<Creator>;
-  episode_run_time: number[];
-  first_air_date: string;
-  genres: ReadonlyArray<Genre>;
-  homepage: string;
-  id: number;
-  in_production: boolean;
-  languages: string[];
-  last_air_date: string;
-  last_episode_to_air: LastEpisodeToAir;
-  name: string;
-  next_episode_to_air: NextEpisodeToAir | null;
-  networks: ReadonlyArray<Network>;
-  number_of_episodes: number;
-  number_of_seasons: number;
-  origin_country: string[];
-  original_language: string;
-  original_name: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
+
+
+
+export type MovieFilteredDetails = {
+  id: number
+  backdrop_path: string
+  credits: Credit
+  genres: ReadonlyArray<Genre>
+  homepage: string
+  overview: string
+  popularity: number
+  poster_path: string
   production_companies: ReadonlyArray<ProductionCompany>
   production_countries: ReadonlyArray<ProductionCountry>
-  recommendations: RecommendationResult
+  recommendations: MovieRecommendationResult
+  release_date: string
+  revenue: number
   reviews: ReviewResult
-  seasons: ReadonlyArray<Season>;
-  spoken_languages: ReadonlyArray<Language>;
-  status: string;
-  tagline: string;
-  type: string;
+  runtime: number
+  spoken_languages: ReadonlyArray<Language>
+  status: string
+  tagline: string
+  title: string
   videos: VideoResult
-  vote_average: number;
-  vote_count: number;
+  vote_average: number
+  vote_count: number
+}
+
+
+// Define the main type for the series
+export type TVShowFilteredDetails = {
+  adult: boolean
+  backdrop_path: string
+  created_by: ReadonlyArray<Creator>
+  credits: Credit
+  episode_run_time: number[]
+  first_air_date: string
+  genres: ReadonlyArray<Genre>
+  homepage: string
+  id: number
+  in_production: boolean
+  languages: string[]
+  last_air_date: string
+  last_episode_to_air: LastEpisodeToAir
+  name: string
+  next_episode_to_air: NextEpisodeToAir | null
+  networks: ReadonlyArray<Network>
+  number_of_episodes: number
+  number_of_seasons: number
+  origin_country: string[]
+  original_language: string
+  original_name: string
+  overview: string
+  popularity: number
+  poster_path: string
+  production_companies: ReadonlyArray<ProductionCompany>
+  production_countries: ReadonlyArray<ProductionCountry>
+  recommendations: TVRecommendationResult
+  reviews: ReviewResult
+  seasons: ReadonlyArray<Season>
+  spoken_languages: ReadonlyArray<Language>
+  status: string
+  tagline: string
+  type: string
+  videos: VideoResult
+  vote_average: number
+  vote_count: number
 };
+
+
+export type CommonDetail = Omit<MovieFilteredDetails, 'title' | 'revenue' | 'release_date' | 'runtime' | 'recommendations'> 
