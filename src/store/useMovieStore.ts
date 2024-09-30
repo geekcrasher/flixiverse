@@ -1,38 +1,38 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { type FilteredDetails } from "@/lib/types";
+import { type TVShowFilteredDetails, type MovieFilteredDetails } from "@/lib/types";
 
 type State = {
-  movieAddedToWishlist: FilteredDetails[]
-  movieAddedToBookmark: FilteredDetails[]
+  addedToWishlist: (MovieFilteredDetails | TVShowFilteredDetails)[]
+  addedToBookmark: (MovieFilteredDetails | TVShowFilteredDetails)[]
 }
 
 type Action = {
-  setAddMovieToWishlist: (value: FilteredDetails) => void
-  setAddMovieToBookmark: (value: FilteredDetails) => void
-  removeToWishlist: (id: number) => void;
-  removeToBookmark: (id: number) => void;
+  setAddToWishlist: (value: MovieFilteredDetails | TVShowFilteredDetails) => void
+  setAddToBookmark: (value: MovieFilteredDetails | TVShowFilteredDetails) => void
+  removeFromWishlist: (id: number) => void;
+  removeFromBookmark: (id: number) => void;
 }
 
 export const useMovieStore = create<State & Action>()(
   persist(
     (set) => ({
-      movieAddedToWishlist: [],
-      movieAddedToBookmark: [],
+      addedToWishlist: [],
+      addedToBookmark: [],
 
-      setAddMovieToWishlist: (value) => set((state) => ({
-        movieAddedToWishlist: [...state.movieAddedToWishlist, value]
+      setAddToWishlist: (value) => set((state) => ({
+        addedToWishlist: [...state.addedToWishlist, value]
       })),
-      setAddMovieToBookmark: (value) => set((state) => ({
-        movieAddedToBookmark: [...state.movieAddedToBookmark, value]
+      setAddToBookmark: (value) => set((state) => ({
+        addedToBookmark: [...state.addedToBookmark, value]
       })),
 
 
-      removeToWishlist: (id) => set((state) => ({
-        movieAddedToWishlist: state.movieAddedToWishlist.filter(movie => movie.id !== id)
+      removeFromWishlist: (id) => set((state) => ({
+        addedToWishlist: state.addedToWishlist.filter(movie => movie.id !== id)
       })),
-      removeToBookmark: (id) => set((state) => ({
-        movieAddedToBookmark: state.movieAddedToBookmark.filter(movie => movie.id !== id)
+      removeFromBookmark: (id) => set((state) => ({
+        addedToBookmark: state.addedToBookmark.filter(movie => movie.id !== id)
       })),
     }),
     {
