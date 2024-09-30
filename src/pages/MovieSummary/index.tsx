@@ -1,35 +1,44 @@
 import { useMemo } from "react";
 import { useMovieFilteredDetails } from "@/hooks/useMovieFilteredDetails";
-import { useMovieStore } from "@/store/useMovieStore";
-import { debounce } from "@/utils/debounce";
+import { useAddToCollection } from "@/hooks/useAddToCollection";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Heading from "@/components/Heading";
-import Recommendation from "./Recommendation";
-import Reviews from "./Reviews";
-import Cast from "./Cast";
 import BackdropCard from "@/components/Cards/BackdropCard";
-import MovieMetaData from "./MovieMetaData";
 import Share from "@/components/Dialog/Share";
 import TrailerAction from "@/components/Dialog/TrailerAction";
 import BackButton from "@/components/Button/BackButton";
-import { Bookmark, Star } from "lucide-react";
+import VoteAverage from "@/components/VoteAverage";
+import MoreDetails from "@/components/Details";
+import Cast from "@/components/Cast";
+import Recommendation from "@/components/Recommendation";
+import Reviews from "@/components/Review";
+import { Bookmark } from "lucide-react";
 
 const MovieSummary = () => {
 
-  const movieAddedToWishlist = useMovieStore((state) => state.movieAddedToWishlist)
-  const movieAddedToBookmark = useMovieStore((state) => state.movieAddedToBookmark)
-
-  const setAddMovieToWishlist = useMovieStore((state) => state.setAddMovieToWishlist)
-  const setAddMovieToBookmark = useMovieStore((state) => state.setAddMovieToBookmark)
-
-  const removeToWishlist = useMovieStore((state) => state.removeToWishlist)
-  const removeToBookmark = useMovieStore((state) => state.removeToBookmark)
-
   const { movieFilteredDetails } = useMovieFilteredDetails()
 
-  const { id, backdrop_path, title, overview,
-    release_date, runtime, vote_average, vote_count, videos } = movieFilteredDetails
+  const {
+    id,
+    backdrop_path,
+    title,
+    overview,
+    credits,
+    release_date,
+    runtime,
+    vote_average,
+    vote_count,
+    videos,
+    reviews,
+    tagline,
+    status,
+    revenue,
+    production_companies,
+    recommendations,
+    production_countries,
+    spoken_languages
+  } = movieFilteredDetails
 
   const formattedDuration = useMemo(() => {
     const hours = Math.floor(runtime / 60);
@@ -37,25 +46,12 @@ const MovieSummary = () => {
     return `${hours}h ${minutes}min`
   }, [runtime])
 
-  const isMovieAddedToWishlist = movieAddedToWishlist.some(
-    (wishlistMovie) => wishlistMovie.id === id
-  );
-
-  const isMovieAddedToBookmark = movieAddedToBookmark.some(
-    (bookmarkedMovie) => bookmarkedMovie.id === id
-  );
-
-  const debouncedWishlistClick = debounce(() => {
-    if (id) {
-      isMovieAddedToWishlist ? removeToWishlist(id) : setAddMovieToWishlist(movieFilteredDetails)
-    }
-  })
-
-  const debouncedBookmarkClick = debounce(() => {
-    if (id) {
-      isMovieAddedToBookmark ? removeToBookmark(id) : setAddMovieToBookmark(movieFilteredDetails)
-    }
-  })
+  const {
+    isAddedToWishlist,
+    isAddedToBookmark,
+    debouncedBookmarkClick,
+    debouncedWishlistClick
+  } = useAddToCollection({ id, filteredDetails: movieFilteredDetails })
 
   return (
     <section className="relative w-auto">
@@ -64,7 +60,7 @@ const MovieSummary = () => {
           <TrailerAction
             videos={videos}
             debouncedWishlistClick={debouncedWishlistClick}
-            isMovieAddedToWishlist={isMovieAddedToWishlist}
+            isAddedToWishlist={isAddedToWishlist}
             className="w-full"
           />
         </section>
@@ -79,11 +75,10 @@ const MovieSummary = () => {
             />
             <section className="flex flex-col gap-10 xl:col-span-2">
               <section className="flex items-center justify-between">
-                <p className="flex items-center gap-2 text-gray-200 font-medium">
-                  <Star color="#FFC30E" fill="#FFC30E" className="size-6" />
-                  {vote_average.toFixed(1)}
-                  <span className="font-normal text-sm text-gray-400"> | {vote_count}</span>
-                </p>
+                <VoteAverage
+                  voteAverage={vote_average}
+                  voteCount={vote_count}
+                />
                 <section className="space-x-6">
                   <Share />
                   <Button
@@ -92,8 +87,8 @@ const MovieSummary = () => {
                   >
                     <span className="sr-only">Bookmark</span>
                     <Bookmark
-                      className={`size-6 ${isMovieAddedToBookmark ? 'text-white' : 'text-gray-400'}`}
-                      fill={isMovieAddedToBookmark ? "#fff" : "#222A33"}
+                      className={`size-6 ${isAddedToBookmark ? 'text-white' : 'text-gray-400'}`}
+                      fill={isAddedToBookmark ? "#fff" : "#222A33"}
                     />
                   </Button>
                 </section>
@@ -125,19 +120,36 @@ const MovieSummary = () => {
               <TrailerAction
                 videos={videos}
                 debouncedWishlistClick={debouncedWishlistClick}
-                isMovieAddedToWishlist={isMovieAddedToWishlist}
+                isAddedToWishlist={isAddedToWishlist}
                 className="hidden xl:flex"
               />
 
-              <MovieMetaData className="xl:hidden mt-4" />
-
+              <MoreDetails
+                tagline={tagline}
+                release_date={release_date}
+                status={status}
+                revenue={revenue}
+                production_countries={production_countries}
+                production_companies={production_companies}
+                spoken_languages={spoken_languages}
+                className="xl:hidden mt-4"
+              />
             </section>
           </section>
 
-          <Cast />
-          <Recommendation />
-          <MovieMetaData className="hidden xl:block mt-12" />
-          <Reviews />
+          <Cast credits={credits} />
+          <Recommendation recommendations={recommendations} />
+          <MoreDetails
+            tagline={tagline}
+            release_date={release_date}
+            status={status}
+            revenue={revenue}
+            production_countries={production_countries}
+            production_companies={production_companies}
+            spoken_languages={spoken_languages}
+            className="hidden xl:block mt-12"
+          />
+          <Reviews reviews={reviews} />
         </section>
       </section>
     </section>
