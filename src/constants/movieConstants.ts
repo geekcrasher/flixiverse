@@ -3,42 +3,44 @@ import {
   type MovieList,
   type TVShowFilteredDetails,
   type LastEpisodeToAir,
+  CommonDetail,
 } from "@/lib/types";
 
-export const initialFilteredMovieDetails: MovieFilteredDetails = {
+const commonDetails: CommonDetail = {
   backdrop_path: '',
   credits: {
-    cast: [],
+    cast: []
   },
-  genres: [{
-    id: null,
-    name: ''
-  }],
-  homepage: undefined,
-  id: null,
+  genres: [],
+  homepage: '',
+  id: 0,
   overview: '',
   popularity: 0,
   poster_path: '',
   production_companies: [],
   production_countries: [],
+  reviews: {
+    results: []
+  },
+  spoken_languages: [],
+  status: '',
+  tagline: '',
+  vote_average: 0,
+  vote_count: 0,
+  videos: {
+    results: []
+  },
+};
+
+export const initialFilteredMovieDetails: MovieFilteredDetails = {
+  ...commonDetails,
   recommendations: {
     results: []
   },
   release_date: '',
   revenue: 0,
-  reviews: {
-    results: []
-  },
   runtime: 0,
-  spoken_languages: [],
-  status: "",
-  tagline: "",
   title: '',
-  vote_average: 0,
-  vote_count: 0,
-  videos: {
-    results: [],
-  },
 };
 
 const lastEpisode: LastEpisodeToAir = {
@@ -58,14 +60,11 @@ const lastEpisode: LastEpisodeToAir = {
 }
 
 export const initialFilteredTVShowDetails: TVShowFilteredDetails = {
+  ...commonDetails,
   adult: false,
-  backdrop_path: '',
   created_by: [],
   episode_run_time: [],
   first_air_date: '',
-  genres: [],
-  homepage: '',
-  id: 0,
   in_production: false,
   languages: [],
   last_air_date: '',
@@ -78,27 +77,11 @@ export const initialFilteredTVShowDetails: TVShowFilteredDetails = {
   origin_country: [],
   original_language: '',
   original_name: '',
-  overview: '',
-  popularity: 0,
-  poster_path: '',
-  production_companies: [],
-  production_countries: [],
   recommendations: {
     results: []
   },
-  reviews: {
-    results: []
-  },
   seasons: [],
-  spoken_languages: [],
-  status: '',
-  tagline: '',
   type: '',
-  videos: {
-    results: []
-  },
-  vote_average: 0,
-  vote_count: 0
 };
 
 
