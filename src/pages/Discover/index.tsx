@@ -1,8 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDiscoverMovies } from "@/hooks/useDiscoverMovies";
-import { useMovieDBStore } from "@/store/useMovieDBStore";
 import Autoplay from 'embla-carousel-autoplay';
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -10,14 +8,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { AspectRatio } from "@radix-ui/react-aspect-ratio";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import SearchBar from "@/components/SearchBar";
+import PosterCard from "@/components/Cards/PosterCard";
 
 const Discover = () => {
 
   const { discoverMovies } = useDiscoverMovies()
-  const setSelectedMovieID = useMovieDBStore(state => state.setSelectedMovieID)
-  const navigate = useNavigate()
 
   return (
     <section className="flex flex-col gap-y-8 mt-8 px-4 md:px-6 lg:px-10">
@@ -71,33 +68,14 @@ const Discover = () => {
             <CarouselContent className="-ml-1">
               {
                 discoverMovies && discoverMovies?.results.length > 0 &&
-                discoverMovies?.results.map((movie) => (
-                  <CarouselItem key={movie.id} className="pl-1 basis-auto mr-6">
-                    <Card
-                      className=" border-0 cursor-pointer overflow-hidden"
-                      onClick={() => {
-                        navigate(`/movie/watch/${movie.id}?title=${encodeURIComponent(movie.title.toLocaleLowerCase())}`)
-                        setSelectedMovieID(movie.id)
-                      }}
-                    >
-                      <CardContent className="p-0">
-                        <figure className=" flex items-center justify-center h-40 sm:h-56 w-[106.66px] sm:w-[138.66px]"
-                          style={{
-                            background: `url(https://image.tmdb.org/t/p/w500/${movie.poster_path})`,
-                            backgroundSize: 'cover',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundPosition: 'center',
-                            backgroundColor: `${!movie.poster_path && '#222A33'}`
-                          }}
-                        >
-                          {!movie.poster_path && (
-                            <h2 className="font-bold flex text-[#00CDD9] text-2xl opacity-30">
-                              flixi
-                              <span className="text-[#797D8B]">Verse</span>
-                            </h2>)}
-                        </figure>
-                      </CardContent>
-                    </Card>
+                discoverMovies?.results.map(({ id, title, poster_path }) => (
+                  <CarouselItem key={id} className="pl-1 basis-auto mr-6">
+                    <Link to={`/movie/watch/${id}?title=${title.toLocaleLowerCase()}`}>
+                      <PosterCard
+                        titleOfShow={title}
+                        poster_path={poster_path}
+                      />
+                    </Link>
                   </CarouselItem>
                 ))
               }
@@ -119,33 +97,14 @@ const Discover = () => {
             <CarouselContent className="-ml-1">
               {
                 discoverMovies && discoverMovies?.results.length > 0 &&
-                discoverMovies?.results.map((movie) => (
-                  <CarouselItem key={movie.id} className="pl-1 basis-auto mr-6">
-                    <Card
-                      className=" border-0 cursor-pointer overflow-hidden"
-                      onClick={() => {
-                        navigate(`/movie/watch/${movie.id}?title=${encodeURIComponent(movie.title.toLocaleLowerCase())}`)
-                        setSelectedMovieID(movie.id)
-                      }}
-                    >
-                      <CardContent className="p-0">
-                        <figure className=" flex items-center justify-center h-40 sm:h-56 w-[106.66px] sm:w-[138.66px]"
-                          style={{
-                            background: `url(https://image.tmdb.org/t/p/w500/${movie.poster_path})`,
-                            backgroundSize: 'cover',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundPosition: 'center',
-                            backgroundColor: `${!movie.poster_path && '#222A33'}`
-                          }}
-                        >
-                          {!movie.poster_path && (
-                            <h2 className="font-bold flex text-[#00CDD9] text-2xl opacity-30">
-                              flixi
-                              <span className="text-[#797D8B]">Verse</span>
-                            </h2>)}
-                        </figure>
-                      </CardContent>
-                    </Card>
+                discoverMovies?.results.map(({ id, title, poster_path }) => (
+                  <CarouselItem key={id} className="pl-1 basis-auto mr-6">
+                    <Link to={`/movie/watch/${id}?title=${title.toLocaleLowerCase()}`}>
+                      <PosterCard
+                        titleOfShow={title}
+                        poster_path={poster_path}
+                      />
+                    </Link>
                   </CarouselItem>
                 ))
               }
