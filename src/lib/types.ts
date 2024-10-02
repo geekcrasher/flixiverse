@@ -7,7 +7,7 @@ import { LucideProps } from "lucide-react"
  */
 type Prettify<T> = {
   [K in keyof T]: T[K]
-} & unknown;
+} & unknown
 
 
 export type MovieCollections = {
@@ -163,10 +163,10 @@ export type TrendingTVCollection = Prettify<
 
 export type TrendingMovieCollection = Prettify<
   TrendingBase & {
-    title?: string;
-    original_title?: string;
-    release_date?: string;
-    video: boolean;
+    title?: string
+    original_title?: string
+    release_date?: string
+    video: boolean
   }
 >
 
@@ -175,51 +175,71 @@ export type TrendingList = Omit<MovieList, 'results'> & {
 }
 
 export type Creator = {
-  id: number;
-  credit_id: string;
-  name: string;
-  original_name: string;
-  gender: number;
-  profile_path: string | null;
-};
+  id: number
+  credit_id: string
+  name: string
+  original_name: string
+  gender: number
+  profile_path: string | null
+}
 
 export type Network = {
-  id: number;
-  logo_path: string | null;
-  name: string;
-  origin_country: string;
-};
+  id: number
+  logo_path: string | null
+  name: string
+  origin_country: string
+}
 
 export type Season = {
-  air_date: string;
-  episode_count: number;
-  id: number;
-  name: string;
-  overview: string;
-  poster_path: string | null;
-  season_number: number;
-  vote_average: number;
-};
+  air_date: string
+  episode_count: number
+  id: number
+  name: string
+  overview: string
+  poster_path: string | null
+  season_number: number
+  vote_average: number
+}
 
 type Episode = {
-  id: number;
-  name: string;
-  overview: string;
-  vote_average: number;
-  vote_count: number;
-  air_date: string;
-  episode_number: number;
-  episode_type: string;
-  production_code: string;
-  runtime: number | null;
-  season_number: number;
-  show_id: number;
-  still_path: string | null;
-};
+  id: number
+  name: string
+  overview: string
+  vote_average: number
+  vote_count: number
+  air_date: string
+  episode_number: number
+  episode_type: string
+  production_code: string
+  runtime: number | null
+  season_number: number
+  show_id: number
+  still_path: string | null
+}
 
 export type LastEpisodeToAir = Episode
 
 export type NextEpisodeToAir = Episode
+
+export type Guest = {
+  guest_stars: ReadonlyArray<Cast>
+}
+
+export type SeasonEpisode = Prettify<Episode & {
+  crew: Guest
+}>
+
+export type SeasonDetail = {
+  _id: string
+  air_date: string
+  episodes: SeasonEpisode[]
+  name: string
+  overview: string
+  id: number
+  poster_path: string
+  season_number: number
+  vote_average: number
+}
 
 
 
@@ -288,7 +308,7 @@ export type TVShowFilteredDetails = {
   videos: VideoResult
   vote_average: number
   vote_count: number
-};
+}
 
 
 export type CommonDetail = Omit<MovieFilteredDetails, 'title' | 'revenue' | 'release_date' | 'runtime' | 'recommendations'> 
