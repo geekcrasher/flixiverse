@@ -1,11 +1,12 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { memo } from "react";
 
 type BackdropCardProp = {
   backdrop_path: string
   title: string
 }
 
-const BackdropCard = ({ backdrop_path, title }: BackdropCardProp) => {
+const BackdropCard = memo(({ backdrop_path, title }: BackdropCardProp) => {
   return (
     <figure className="xl:col-span-3 flex xl:max-w-full rounded-lg overflow-hidden space-y-6 ">
       <AspectRatio ratio={16 / 9} className="flex items-center justify-center bg-gray-700">
@@ -26,6 +27,6 @@ const BackdropCard = ({ backdrop_path, title }: BackdropCardProp) => {
       </AspectRatio>
     </figure>
   );
-}
+})
 
 export default BackdropCard;

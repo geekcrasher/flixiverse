@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { cn } from "@/lib/utils";
 import {
   type ProductionCountry,
@@ -20,7 +21,7 @@ type MoreDetailsProp = {
   className?: string
 }
 
-const MoreDetails = ({
+const MoreDetails = memo(({
   tagline,
   release_date,
   status, revenue,
@@ -92,6 +93,6 @@ const MoreDetails = ({
       </Container>
     </section>
   );
-}
+})
 
 export default MoreDetails;
