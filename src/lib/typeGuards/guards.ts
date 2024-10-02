@@ -4,7 +4,8 @@ import {
   type TrendingMovieCollection,
   type TrendingTVCollection,
   MovieFilteredDetails,
-  TVShowFilteredDetails
+  TVShowFilteredDetails,
+  SeasonDetail
 } from "../types";
 
 export const isMovieList = (data: unknown): data is MovieList => {
@@ -62,3 +63,28 @@ export const isTVShow = (data: unknown): data is TVShowFilteredDetails => {
   }
   return false;
 }
+
+
+// export const isSeasonData = (data: unknown): data is SeasonDetail => {
+//   if (typeof data === 'object' && data !== null) {
+//     return '_id' in data && typeof data._id === 'string' &&
+//       'id' in data && data.id === 'number' &&
+//       'episodes' in data && Array.isArray(data.episodes)
+//   }
+//   return false;
+// }
+
+export const isSeasonData = (data: unknown): data is SeasonDetail => {
+  if (typeof data === 'object' && data !== null) {
+    return '_id' in data && typeof (data as SeasonDetail)._id === 'string' &&
+      'id' in data && typeof (data as SeasonDetail).id === 'number' &&
+      'episodes' in data && Array.isArray((data as SeasonDetail).episodes)
+    // 'air_date' in data && typeof (data as SeasonDetail).air_date === 'string' &&
+    // 'name' in data && typeof (data as SeasonDetail).name === 'string'
+    // 'overview' in data && typeof (data as SeasonDetail).overview === 'string' &&
+    // 'poster_path' in data && (typeof (data as SeasonDetail).poster_path === 'string' || (data as SeasonDetail).poster_path === null) &&
+    // 'season_number' in data && typeof (data as SeasonDetail).season_number === 'number' &&
+    // 'vote_average' in data && (typeof (data as SeasonDetail).vote_average === 'number' || (data as SeasonDetail).vote_average === null);
+  }
+  return false;
+};
